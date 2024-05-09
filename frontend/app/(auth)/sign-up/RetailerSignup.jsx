@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import { Button } from '../../../components/ui/button';
 import classes from '../styles/inputStyle.module.css';
 import Link from 'next/link';
+import PostDb from '@/helpers/postDb';
 
 const RetailerSignup = () => {
+  const { signupRetailer } = PostDb();
   const [newRetailerDetail, setNewRetailerDetail] = useState({
     storeName: '',
     address: '',
@@ -20,6 +22,14 @@ const RetailerSignup = () => {
       ...prevState,
       [name]: value,
     }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    console.log(newRetailerDetail);
+
+    await signupRetailer(newRetailerDetail);
   };
 
   return (
@@ -120,11 +130,13 @@ const RetailerSignup = () => {
         </div>
       </div>
       <div className="mt-5">
-        <p className='font-bold underline'>Note: </p>
+        <p className="font-bold underline">Note: </p>
         <p>Login Details will be sent to Registered E-mail</p>
       </div>
       <div className="flex justify-center">
-        <Button className="mt-4 w-[200px]">Sign up</Button>
+        <Button onClick={handleSubmit} className="mt-4 w-[200px]">
+          Sign up
+        </Button>
       </div>
       <div className="flex items-center justify-center gap-2 mt-2">
         <p>Have an account?</p>
