@@ -10,6 +10,8 @@ const signupRetailer = async (req, res) => {
   try {
     const { data } = req.body;
 
+    console.log(data);
+
     const newRetailer = new Retailer({
       storeName: data.storeName,
       ownerName: data.ownerName,

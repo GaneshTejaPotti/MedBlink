@@ -6,6 +6,7 @@ const { default: mongoose } = require('mongoose');
 const bodyParser = require('body-parser');
 
 const retailRoutes = require('./routes/retailRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 // Express app
 const app = express();
@@ -26,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // routes
 app.use('/api/retailer', retailRoutes);
+app.use('/api/admin', adminRoutes);
 
 mongoose.set('strictQuery', false);
 

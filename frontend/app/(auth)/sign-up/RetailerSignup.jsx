@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button } from '../../../components/ui/button';
 import classes from '../styles/inputStyle.module.css';
 import Link from 'next/link';
-import PostDb from '@/helpers/postDb';
+import PostDb from '@/app/(routes)/api/PostDb';
 
 const RetailerSignup = () => {
   const { signupRetailer } = PostDb();
@@ -26,8 +26,6 @@ const RetailerSignup = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    console.log(newRetailerDetail);
 
     await signupRetailer(newRetailerDetail);
   };
