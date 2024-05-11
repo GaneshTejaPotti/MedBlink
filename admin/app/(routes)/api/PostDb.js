@@ -1,5 +1,5 @@
-'use client';
-import React from 'react';
+"use client";
+import React from "react";
 
 const PostDb = () => {
   const saveRetailer = ({ _id, retailerId, password }) => {

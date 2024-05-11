@@ -1,7 +1,7 @@
-'use client';
-import React, { useEffect } from 'react';
-import Requests from './Requests';
-import FetchDb from '../api/FetchDb';
+"use client";
+import React, { useEffect } from "react";
+import Requests from "./Requests";
+import FetchDb from "../api/FetchDb";
 // import FetchDb from "../api/FetchDb";
 
 const page = () => {
@@ -20,7 +20,7 @@ const page = () => {
       </h2>
       <div className="mt-5 gap-y-5 mx-5">
         <h2 className="font-bold text-xl mb-5">Available Requests</h2>
-        <Requests />
+        <Requests accounts={accountsData} />
       </div>
     </div>
   );

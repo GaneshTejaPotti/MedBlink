@@ -1,7 +1,6 @@
 import React from "react";
-import classes from "./inputStyle.module.css";
+import classes from "../../styles/inputStyle.module.css";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import Image from "next/image";
 
 const page = () => {
@@ -43,7 +42,6 @@ const page = () => {
           <div className="flex justify-center">
             <Button className="mt-4 w-[200px]">Login</Button>
           </div>
-          
         </div>
       </div>
     </div>
