@@ -1,9 +1,18 @@
-import React from "react";
-import FetchDb from "../api/FetchDb";
+'use client';
+import React, { useEffect } from 'react';
+import Requests from './Requests';
+import FetchDb from '../api/FetchDb';
+// import FetchDb from "../api/FetchDb";
 
 const page = () => {
   const { fetchAccounts, accountsData } = FetchDb();
-  
+
+  useEffect(() => {
+    fetchAccounts();
+  }, []);
+
+  console.log(accountsData);
+
   return (
     <div className="mt-20 ">
       <h2 className="p-4 text-white bg-primary font-bold text-3xl text-center">
