@@ -9,7 +9,6 @@ const PostDb = () => {
     process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : '';
 
   const signupRetailer = async (data) => {
-    console.log(data);
     const response = await fetch(`${BACKEND_URL}/api/retailer/signup`, {
       method: 'POST',
       headers: {

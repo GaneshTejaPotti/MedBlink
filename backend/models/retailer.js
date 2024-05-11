@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const retailerSchema = new Schema({
-  username: String,
+  retailerId: String,
   password: String,
   storeName: String,
   ownerName: String,

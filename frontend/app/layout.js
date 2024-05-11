@@ -3,6 +3,7 @@ import { Outfit } from 'next/font/google';
 import './globals.css';
 import Header from './_components/Header';
 import { usePathname } from 'next/navigation';
+import { AuthContextProvider } from './context/AuthContext';
 
 const outfit = Outfit({ subsets: ['latin'] });
 
@@ -16,10 +17,12 @@ export default function RootLayout({ children }) {
   const showHeader = params == '/login' || params == '/sign-up' ? false : true;
   return (
     <html lang="en">
-      <body className={outfit.className}>
-        {showHeader ? <Header /> : null}
-        {children}
-      </body>
+      <AuthContextProvider>
+        <body className={outfit.className}>
+          {showHeader ? <Header /> : null}
+          {children}
+        </body>
+      </AuthContextProvider>
     </html>
   );
 }

@@ -1,6 +1,6 @@
-"use client";
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
+'use client';
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -8,15 +8,17 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import classes from "../../styles/inputStyle.module.css";
-import saveRetailer from "../api/PostDb";
+} from '@/components/ui/dialog';
+import classes from '../../styles/inputStyle.module.css';
+import PostDb from '../api/PostDb';
 
 const AccountTable = ({ accounts }) => {
+  const { saveRetailer } = PostDb();
+
   const [saveRetailerAuthDetail, setSaveRetailerAuthDetail] = useState({
-    _id: "",
-    retailerId: "",
-    password: "",
+    _id: '',
+    retailerId: '',
+    password: '',
   });
 
   const onChangeHandler = (e) => {
@@ -27,18 +29,12 @@ const AccountTable = ({ accounts }) => {
     }));
   };
 
-  const handleSave = (accountId) => {
-    setSaveRetailerAuthDetail((prev) => ({
-      ...prev,
+  const handleSave = async (accountId) => {
+    await saveRetailer({
       _id: accountId,
-    }));
-    saveRetailer(saveRetailerAuthDetail);
-    setSaveRetailerAuthDetail({
-      _id: "",
-      retailerId: "",
-      password: "",
+      retailerId: saveRetailerAuthDetail.retailerId,
+      password: saveRetailerAuthDetail.password,
     });
-    saveRetailer(saveRetailerAuthDetail);
   };
 
   return (

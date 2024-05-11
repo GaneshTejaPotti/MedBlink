@@ -1,5 +1,6 @@
 const Retailer = require('../models/retailer');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 const createToken = (_id) => {
   return jwt.sign({ _id }, process.env.SECRET, { expiresIn: '3d' });
@@ -30,7 +31,29 @@ const signupRetailer = async (req, res) => {
   }
 };
 
-const loginRetailer = async (req, res) => {};
+const loginRetailer = async (req, res) => {
+  try {
+    const { retailerId, password } = req.body;
+
+    const retailer = await Retailer.findOne({ retailerId });
+
+    if (!retailer) {
+      return res.status(500).send({ error: 'Invalid User' });
+    }
+
+    const match = await bcrypt.compare(password, retailer.password);
+
+    if (!match) {
+      return res.status(500).send({ error: 'Incorrect password' });
+    }
+
+    const token = createToken(retailer._id);
+
+    res.status(200).json({ token: token });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 
 module.exports = {
   signupRetailer,
