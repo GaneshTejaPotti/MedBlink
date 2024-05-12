@@ -1,7 +1,8 @@
-'use client';
-import { useState } from 'react';
-import { UseAuthContext } from '../../context/useAuthContext';
-import { useSnackbar } from 'notistack';
+"use client";
+import { useState } from "react";
+import { UseAuthContext } from "../../context/useAuthContext";
+import { useSnackbar } from "notistack";
+import { useRouter } from "next/navigation";
 
 const useLogin = () => {
   const { dispatch } = UseAuthContext();
@@ -9,13 +10,15 @@ const useLogin = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const BACKEND_URL =
-    process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : '';
+    process.env.NODE_ENV === "development" ? "http://localhost:4000" : "";
+
+  const router = useRouter();
 
   const login = async ({ retailerId, password }) => {
     const response = await fetch(`${BACKEND_URL}/api/retailer/login`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         retailerId,
@@ -29,15 +32,16 @@ const useLogin = () => {
       console.log(json.error);
     }
     if (response.ok) {
-      enqueueSnackbar('LoggedIn succesfully!', {
-        variant: 'success',
+      enqueueSnackbar("LoggedIn succesfully!", {
+        variant: "success",
         autoHideDuration: 2000,
       });
 
-      localStorage.setItem('retailer', JSON.stringify(json));
+      localStorage.setItem("retailer", JSON.stringify(json));
 
       // update the auth context
-      dispatch({ type: 'LOGIN', payload: json });
+      dispatch({ type: "LOGIN", payload: json });
+      router.push("/");
     }
   };
   return { login };

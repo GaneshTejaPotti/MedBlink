@@ -19,6 +19,12 @@ function Header() {
         </div>
         <div className="flex gap-10">
           <Link
+            href="/"
+            className="cursor-pointer hover:text-red-600 hover:scale-110 transition-all ease-in-out"
+          >
+            Home
+          </Link>
+          <Link
             href="/manage-requests"
             className="cursor-pointer hover:text-red-600 hover:scale-110 transition-all ease-in-out"
           >

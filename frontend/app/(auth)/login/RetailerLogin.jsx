@@ -13,6 +13,7 @@ const RetailerLogin = () => {
 
   const handleLogin = async () => {
     await login({ retailerId: username, password: password });
+    
   };
 
   return (

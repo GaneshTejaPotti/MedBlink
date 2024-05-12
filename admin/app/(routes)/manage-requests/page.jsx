@@ -58,16 +58,14 @@ const page = () => {
         </div>
         {selectedRequests === "pending" && (
           <div>
-            <h2 className="font-bold text-2xl italic mb-5">Pending Requests</h2>
+            <h2 className="font-bold text-2xl italic m-5">Pending Requests</h2>
             <PendingRequests accounts={accountsData} />
           </div>
         )}
 
         {selectedRequests === "accepted" && (
           <div>
-            <h2 className="font-bold text-2xl italic mb-5">
-              Accepted Requests
-            </h2>
+            <h2 className="font-bold text-2xl italic m-5">Accepted Requests</h2>
             <AcceptedRequests accounts={accountsData} />
           </div>
         )}

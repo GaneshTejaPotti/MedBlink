@@ -38,7 +38,7 @@ const AccountTable = ({ accounts }) => {
   };
 
   return (
-    <div>
+    <div className="m-5">
       <table className="border-collapse border w-full">
         <thead>
           <tr className="bg-gray-200">
